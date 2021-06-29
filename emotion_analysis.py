@@ -28,7 +28,7 @@ def get_scores(output):
     return softmax(scores)
 
 
-class SentimentAnalysisModel:
+class EmotionAnalysisModel:
     def __init__(self):
         self.MODEL = "twitter-roberta-base-emotion"
         self.tokenizer = AutoTokenizer.from_pretrained(self.MODEL)
@@ -60,5 +60,5 @@ class SentimentAnalysisModel:
 
 
 if __name__ == "__main__":
-    model = SentimentAnalysisModel()
+    model = EmotionAnalysisModel()
     print(model.text_express_anger("I'm not sure if I asked your opinion"))

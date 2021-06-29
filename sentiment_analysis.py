@@ -33,23 +33,32 @@ class SentimentAnalysisModel:
     def init_model(self):
         return AutoModelForSequenceClassification.from_pretrained(self.MODEL)
 
-    def get_scores(self, text):
+    def predict(self, text):
         text = preprocess(text)
         encoded_input = self.tokenizer(text, return_tensors='pt')
         output = self.model(**encoded_input)
+        scores = self.get_scores(output)
+        ranking = self.get_ranking(scores)
+        return ranking[0]
+
+    def show_results(self, text):
+        prediction = self.predict(text)
+        print(f"This text expresses {self.labels[prediction]}")
+
+    def get_scores(self, output):
         scores = output[0][0].detach().numpy()
-        scores = softmax(scores)
+        return softmax(scores)
+
+    def get_ranking(self, scores):
         ranking = np.argsort(scores)
-        ranking = ranking[::-1]
-        for i in range(scores.shape[0]):
-            label = self.labels[ranking[i]]
-            score = scores[ranking[i]]
-            probability = np.round(float(score), 4)
-            print(f"{i + 1}) {label} {probability}")
+        return ranking[::-1]
 
-
+    def text_express_anger(self, text):
+        prediction = self.predict(text)
+        return prediction == 0
 
 
 if __name__ == "__main__":
     model = SentimentAnalysisModel()
-    model.get_scores("Cannot believe that you're saying that 🙄")
+
+    print(model.text_express_anger("I'm not sure if I asked your opinion"))

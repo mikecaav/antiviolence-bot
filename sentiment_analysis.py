@@ -23,6 +23,11 @@ def preprocess(text):
     return " ".join(new_text)
 
 
+def get_scores(output):
+    scores = output[0][0].detach().numpy()
+    return softmax(scores)
+
+
 class SentimentAnalysisModel:
     def __init__(self):
         self.MODEL = "twitter-roberta-base-emotion"
@@ -37,17 +42,13 @@ class SentimentAnalysisModel:
         text = preprocess(text)
         encoded_input = self.tokenizer(text, return_tensors='pt')
         output = self.model(**encoded_input)
-        scores = self.get_scores(output)
+        scores = get_scores(output)
         ranking = self.get_ranking(scores)
         return ranking[0]
 
     def show_results(self, text):
         prediction = self.predict(text)
         print(f"This text expresses {self.labels[prediction]}")
-
-    def get_scores(self, output):
-        scores = output[0][0].detach().numpy()
-        return softmax(scores)
 
     def get_ranking(self, scores):
         ranking = np.argsort(scores)
@@ -60,5 +61,4 @@ class SentimentAnalysisModel:
 
 if __name__ == "__main__":
     model = SentimentAnalysisModel()
-
     print(model.text_express_anger("I'm not sure if I asked your opinion"))

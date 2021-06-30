@@ -15,12 +15,17 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    report_message_channel = get_report_message_channel(message.guild)
     if message.author == client.user:
         return
     if model.text_express_anger(message.content):
-        await message.channel.send("Your message express anger, you're going to be banned")
-    else:
-        await message.channel.send("Your message it's okay bruh ;)")
+        await report_message_channel.send(f"{message.author.mention}: {message.content}")
+
+
+def get_report_message_channel(guild):
+    for channel in guild.channels:
+        if channel.name == CHANNEL_NAME:
+            return channel
 
 
 @client.event

@@ -102,4 +102,4 @@ def get_category(guild):
             return category
 
 
-client.run(os.environ['TOKEN'])
+client.run(os.environ['ANTI-VIOLENCE-TOKEN'])

@@ -38,6 +38,8 @@ async def on_guild_join(guild):
         f"Your bot just landed into {guild.name}! We've created the corresponding channels, roles and categories to make it work :D")
     if CHANNEL_CATEGORY not in categories:
         category = await guild.create_category(CHANNEL_CATEGORY)
+    else:
+        category = get_category(guild)
 
     if MODERATOR_ROLE not in roles:
         permissions = discord.Permissions(
@@ -52,6 +54,9 @@ async def on_guild_join(guild):
             permissions=permissions,
             mentionable=True
         )
+
+    else:
+        moderator_role = get_moderator_role(guild)
 
     if CHANNEL_NAME not in channels:
         overwrites = {
@@ -83,6 +88,18 @@ def get_objects_from_list(list_of_objects):
     for object_ in list_of_objects:
         objects.add(object_.name)
     return objects
+
+
+def get_moderator_role(guild):
+    for role in guild.roles:
+        if role.name == MODERATOR_ROLE:
+            return role
+
+
+def get_category(guild):
+    for category in guild.categories:
+        if category.name == CHANNEL_CATEGORY:
+            return category
 
 
 client.run(os.environ['TOKEN'])

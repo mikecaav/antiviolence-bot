@@ -2,7 +2,7 @@
 Welcome, this is the repository to the Anti-Violence bot which
 was created to avoid violence in discord servers. This bot uses emotion analysis to detect when a message is being violent
 and then sends to a private channel the message to the moderators to
-review the message and decide if the user is going to be banned or not.
+review it and decide if the user is going to be banned or not.
 
 ## Add this to your discord server
 If you'd like to add this bot to your discord server you just need to

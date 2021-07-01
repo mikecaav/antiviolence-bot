@@ -34,7 +34,8 @@ async def on_guild_join(guild):
     channels = get_channels(guild)
     roles = get_roles(guild)
 
-    print(f"Your bot just landed into {guild.name}! We've created the corresponding channels, roles and categories to make it work :D")
+    print(
+        f"Your bot just landed into {guild.name}! We've created the corresponding channels, roles and categories to make it work :D")
     if CHANNEL_CATEGORY not in categories:
         category = await guild.create_category(CHANNEL_CATEGORY)
 
@@ -72,8 +73,10 @@ def get_categories(guild):
 def get_channels(guild):
     return get_objects_from_list(guild.channels)
 
+
 def get_roles(guild):
     return get_objects_from_list(guild.roles)
+
 
 def get_objects_from_list(list_of_objects):
     objects = set()

@@ -6,19 +6,19 @@ review it and decide if the user is going to be banned or not.
 
 ## Add this to your discord server
 If you'd like to add this bot to your discord server you just need to
-<a href='https://discord.com/api/oauth2/authorize?client_id=859471254703833099&permissions=8&scope=bot'>click here</a>
+<a href='https://discord.com/api/oauth2/authorize?client_id=859471254703833099&permissions=8&scope=bot'>click here</a>.
 
 
 ## Installation
 ### Docker
-To run this bot with the dockerized image you can 
+To run this bot with the dockerized image
 ```
 docker run anti-violence-bot
 ```
 
 ### Python
 To run this bot on your own and add some modifications you need to: <br/>
-Clone this repo:
+#### Clone this repo:
 ```
 git clone https://github.com/mikecaav/antiviolence-bot.git
 cd antiviolence-bot

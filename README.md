@@ -1,6 +1,6 @@
 # Anti-Violence Discord.py Bot
-Welcome, this is the repository to the antiviolence bot which
-was created with to avoid violence in discord servers. This bot uses emotion analysis to detect when a message is being violent
+Welcome, this is the repository to the Anti-Violence bot which
+was created to avoid violence in discord servers. This bot uses emotion analysis to detect when a message is being violent
 and then sends to a private channel the message to the moderators to
 review the message and decide if the user is going to be banned or not.
 

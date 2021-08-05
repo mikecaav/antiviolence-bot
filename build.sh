@@ -11,4 +11,4 @@ else
   echo "$FILE is now downloaded"
 fi
 
-#docker build -t mikex40/antiviolence-bot -f Dockerfile .
+docker build -t mikex40/antiviolence-bot -f Dockerfile .
